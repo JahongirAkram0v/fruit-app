@@ -12,6 +12,7 @@ import lombok.*;
 @Entity(name = "_user")
 public class User {
 
+    // TODO: qoshimcha ishlar olib borishim kerak
     @Id
     private Long id;
     private String number;

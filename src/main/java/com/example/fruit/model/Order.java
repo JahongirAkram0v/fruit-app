@@ -12,6 +12,7 @@ import lombok.*;
 @Entity(name = "_order")
 public class Order {
 
+    // TODO: qoshimcha ishlar olib borishim kerak
     @Id
     @Generated
     private String id;

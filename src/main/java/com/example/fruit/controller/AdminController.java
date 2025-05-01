@@ -32,6 +32,15 @@ public class AdminController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    @GetMapping("/{id}/image")
+    public ResponseEntity<byte[]> getOrderImage(@PathVariable String id) {
+        return orderService.getOrderById(id)
+                .map(order -> ResponseEntity.ok()
+                        .header("Content-Type", order.getImageType())
+                        .body(order.getImageData()))
+                .orElse(ResponseEntity.notFound().build());
+    }
+
     @PostMapping("/")
     public ResponseEntity<Order> createOrder(
             @RequestPart Order order,
@@ -51,15 +60,6 @@ public class AdminController {
         } catch (IOException e) {
             return ResponseEntity.internalServerError().build();
         }
-    }
-
-    @GetMapping("/{id}/image")
-    public ResponseEntity<byte[]> getOrderImage(@PathVariable String id) {
-        return orderService.getOrderById(id)
-                .map(order -> ResponseEntity.ok()
-                        .header("Content-Type", order.getImageType())
-                        .body(order.getImageData()))
-                .orElse(ResponseEntity.notFound().build());
     }
 
     @PutMapping("/{id}")
